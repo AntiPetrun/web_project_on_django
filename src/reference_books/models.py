@@ -19,11 +19,11 @@ class Author(models.Model):
         verbose_name= 'Full Name',
         max_length= 32
     )
-    country_birth = models.CharField(
-        verbose_name= 'Country of Birth',
-        max_length= 32,
-        blank= True,
-        null= True
+    country_birth = models.ForeignKey(
+        'Country',
+        null=True,
+        on_delete=models.PROTECT,
+        verbose_name='Country of Birth'
     )
     date_birth = models.DateField(
         verbose_name= 'Date of Birth',
@@ -32,7 +32,7 @@ class Author(models.Model):
     )
     biography = models.TextField(
         verbose_name= 'Biography',
-        max_length= 256,
+        max_length= 2048,
         blank= True,
         null= True
     )
@@ -63,27 +63,35 @@ class BookSeries(models.Model):
         blank= True,
         null= True
     )
-    genre = models.CharField(
-        verbose_name= 'Genre',
-        max_length= 32
+    author = models.ForeignKey(
+        'Author',
+        null=True,
+        on_delete=models.PROTECT,
+        verbose_name='Author'
     )
-    country = models.CharField(
-        verbose_name= 'Country',
-        max_length= 32,
-        blank= True,
-        null= True
+    country = models.ForeignKey(
+        'Country',
+        null=True,
+        on_delete=models.PROTECT,
+        verbose_name='Country'
     )
-    language = models.CharField(
-        verbose_name= 'Language',
-        max_length= 32,
-        blank= True,
-        null= True
+    language = models.ForeignKey(
+        'Language',
+        null=True,
+        on_delete=models.PROTECT,
+        verbose_name='Language'
     )
-    publish_house = models.CharField(
-        verbose_name= 'Publishing House',
-        max_length= 32,
-        blank= True,
-        null= True
+    genre = models.ForeignKey(
+        'LiteraryGenre',
+        null=True,
+        on_delete=models.PROTECT,
+        verbose_name='Genre'
+    )
+    publishing_house = models.ForeignKey(
+        'PublishingHouse',
+        null=True,
+        on_delete=models.PROTECT,
+        verbose_name='Publishing House'
     )
     release_date = models.DateField(
         verbose_name= 'Release Date',
@@ -114,8 +122,8 @@ class LiteraryGenre(models.Model):
         db_index=True
     )
     description = models.TextField(
-        verbose_name= 'Biography',
-        max_length= 256,
+        verbose_name= 'Description',
+        max_length= 2048,
         blank= True,
         null= True
     )
@@ -137,16 +145,16 @@ class PublishingHouse(models.Model):
         max_length= 32,
         db_index=True
     )
-    country = models.CharField(
-        verbose_name= 'Country',
-        max_length= 32,
-        blank= True,
-        null= True
-    )
     founding_date = models.DateField(
         verbose_name= 'Founding Date',
         blank= True,
         null= True
+    )
+    country = models.ForeignKey(
+        'Country',
+        null=True,
+        on_delete=models.PROTECT,
+        verbose_name='Country'
     )
     address = models.TextField(
         verbose_name= 'Address',
