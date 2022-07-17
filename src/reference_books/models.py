@@ -5,9 +5,6 @@ from django.db import models
 from django.forms import DateField
 
 
-# Create your models here.
-
-
 class Author(models.Model):
     first_name = models.CharField(
         verbose_name= 'First Name',
@@ -15,7 +12,8 @@ class Author(models.Model):
         )
     last_name = models.CharField(
         verbose_name= 'Last Name',
-        max_length= 32
+        max_length= 32,
+        db_index=True
     )
     full_name = models.CharField(
         verbose_name= 'Full Name',
@@ -44,10 +42,17 @@ class Author(models.Model):
         return self.full_name
 
 
+    class Meta():
+        verbose_name_plural = 'Authors'
+        verbose_name = 'Author'
+        ordering = ['last_name']
+
+
 class BookSeries(models.Model):
     name = models.CharField(
         verbose_name= 'Name',
-        max_length= 32
+        max_length= 32,
+        db_index=True
     )
     original_name = models.CharField(
         verbose_name= 'Original Name',
@@ -95,11 +100,18 @@ class BookSeries(models.Model):
     def __str__(self) -> str:
         return self.name
 
+    
+    class Meta():
+        verbose_name_plural = 'Book Series'
+        verbose_name = 'Book Series'
+        ordering = ['name']
+
 
 class LiteraryGenre(models.Model):
     name = models.CharField(
         verbose_name= 'Name',
-        max_length= 32
+        max_length= 32,
+        db_index=True
     )
     description = models.TextField(
         verbose_name= 'Biography',
@@ -113,10 +125,17 @@ class LiteraryGenre(models.Model):
         return self.name
 
 
+    class Meta():
+        verbose_name_plural = 'Literary Genres'
+        verbose_name = 'Literary Genre'
+        ordering = ['name']
+
+
 class PublishingHouse(models.Model):
     name = models.CharField(
         verbose_name= 'Name',
-        max_length= 32
+        max_length= 32,
+        db_index=True
     )
     country = models.CharField(
         verbose_name= 'Country',
@@ -144,25 +163,45 @@ class PublishingHouse(models.Model):
     
     def __str__(self) -> str:
         return self.name
+    
+    
+    class Meta():
+        verbose_name_plural = 'Publishing Houses'
+        verbose_name = 'Publishing House'
+        ordering = ['name']
 
 
 class Country(models.Model):
     name = models.CharField(
         verbose_name= 'Name',
-        max_length= 64
+        max_length= 64,
+        db_index=True
     )
     
     
     def __str__(self) -> str:
         return self.name
+    
+    
+    class Meta():
+        verbose_name_plural = 'Countries'
+        verbose_name = 'Country'
+        ordering = ['name']
 
 
 class Language(models.Model):
     name = models.CharField(
         verbose_name= 'Language',
-        max_length= 32
+        max_length= 32,
+        db_index=True
     )
     
     
     def __str__(self) -> str:
         return self.name
+    
+    
+    class Meta():
+        verbose_name_plural = 'Languages'
+        verbose_name = 'Language'
+        ordering = ['name']
