@@ -1,7 +1,7 @@
 from multiprocessing.context import ForkProcess
 from pyexpat import model
 from django.contrib import admin
-from .models import Author, BookSeries, LiteraryGenre, PublishingHouse, Country, Language
+from . import models
 
 
 class AuthorAdmin(admin.ModelAdmin):
@@ -28,9 +28,9 @@ class PublishingHouseAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
-admin.site.register(Author, AuthorAdmin)
-admin.site.register(BookSeries, BookSeriesAdmin)
-admin.site.register(LiteraryGenre, LiteraryGenreAdmin)
-admin.site.register(PublishingHouse, PublishingHouseAdmin)
-admin.site.register(Country)
-admin.site.register(Language)
+admin.site.register(models.Author, AuthorAdmin)
+admin.site.register(models.BookSeries, BookSeriesAdmin)
+admin.site.register(models.LiteraryGenre, LiteraryGenreAdmin)
+admin.site.register(models.PublishingHouse, PublishingHouseAdmin)
+admin.site.register(models.Country)
+admin.site.register(models.Language)
