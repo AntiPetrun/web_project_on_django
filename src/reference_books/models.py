@@ -37,7 +37,6 @@ class Author(models.Model):
         null= True
     )
     
-    
     def __str__(self) -> str:
         return self.full_name
 
@@ -104,7 +103,6 @@ class BookSeries(models.Model):
         null= True
     )
     
-    
     def __str__(self) -> str:
         return self.name
 
@@ -127,7 +125,6 @@ class LiteraryGenre(models.Model):
         blank= True,
         null= True
     )
-    
     
     def __str__(self) -> str:
         return self.name
@@ -168,7 +165,6 @@ class PublishingHouse(models.Model):
         null= True
     )
     
-    
     def __str__(self) -> str:
         return self.name
     
@@ -185,7 +181,6 @@ class Country(models.Model):
         max_length= 64,
         db_index=True
     )
-    
     
     def __str__(self) -> str:
         return self.name
@@ -204,7 +199,6 @@ class Language(models.Model):
         db_index=True
     )
     
-    
     def __str__(self) -> str:
         return self.name
     
@@ -212,4 +206,117 @@ class Language(models.Model):
     class Meta():
         verbose_name_plural = 'Languages'
         verbose_name = 'Language'
+        ordering = ['name']
+
+
+class currency(models.Model):
+    name = models.CharField(
+        verbose_name= 'Name',
+        max_length= 16,
+        db_index=True
+    )
+    code = models.CharField(
+        verbose_name= 'Name',
+        max_length= 16,
+        db_index=True
+    )
+    symbol = models.CharField(
+        verbose_name= 'Name',
+        max_length= 16,
+        db_index=True
+    )
+    
+    def __str__(self) -> str:
+        return self.name
+
+
+    class Meta():
+        verbose_name_plural = 'Literary Genres'
+        verbose_name = 'Literary Genre'
+        ordering = ['name']
+
+
+class Book(models.Model):
+    name = models.CharField(
+        verbose_name= 'Name',
+        max_length= 32,
+        db_index=True
+    )
+    original_name = models.CharField(
+        verbose_name= 'Original Name',
+        max_length= 32
+    )
+    image = models.ImageField(
+        verbose_name= 'Image',
+        blank= True,
+        null= True
+    )
+    author = models.ForeignKey(
+        'Author',
+        on_delete=models.PROTECT,
+        verbose_name='Author'
+    )
+    country = models.ForeignKey(
+        'Country',
+        on_delete=models.PROTECT,
+        verbose_name='Country'
+    )
+    language = models.ForeignKey(
+        'Language',
+        on_delete=models.PROTECT,
+        verbose_name='Language'
+    )
+    seria = models.ForeignKey(
+        'BookSeries',
+        on_delete=models.PROTECT,
+        verbose_name='Series'
+    )
+    release_number = models.CharField(
+        verbose_name= 'Realise Number',
+        max_length= 16
+    )
+    genre = models.ForeignKey(
+        'LiteraryGenre',
+        on_delete=models.PROTECT,
+        verbose_name='Genre'
+    )
+    publishing_house = models.ForeignKey(
+        'PublishingHouse',
+        on_delete=models.PROTECT,
+        verbose_name='Publishing House'
+    )
+    release_date = models.DateField(
+        verbose_name= 'Release Date',
+        blank= True,
+        null= True
+    )
+    rus_release_date = models.DateField(
+        verbose_name= 'Release Date in Russian',
+        blank= True,
+        null= True
+    )
+    page = models.CharField(
+        verbose_name= 'Pages',
+        max_length= 16
+    )
+    isbn = models.IntegerField(
+        verbose_name= 'ISBN'
+    )
+    price = models.FloatField(
+        verbose_name='Price',
+        max_length=8
+    )
+    currency = models.ForeignKey(
+        'Currency',
+        on_delete=models.PROTECT,
+        verbose_name='Currency'
+    )
+    
+    def __str__(self) -> str:
+        return self.name
+
+    
+    class Meta():
+        verbose_name_plural = 'Books'
+        verbose_name = 'Book'
         ordering = ['name']
