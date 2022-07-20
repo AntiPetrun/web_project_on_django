@@ -11,9 +11,9 @@ class AuthorAdmin(admin.ModelAdmin):
 
 
 class BookSeriesAdmin(admin.ModelAdmin):
-    list_display = ('name', 'original_name', 'image', 'country', 'language', 'genre', 'publishing_house', 'release_date', 'rus_release_date')
+    list_display = ('name', 'original_name', 'image', 'country', 'language', 'genre', 'publishing_house', 'release_date', 'rus_release_date', 'description')
     list_display_links = ('name', 'original_name')
-    search_fields = ('name', 'original_name')
+    search_fields = ('name', 'original_name', 'description')
 
 
 class LiteraryGenreAdmin(admin.ModelAdmin):
@@ -28,9 +28,23 @@ class PublishingHouseAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+class BookAdmin(admin.ModelAdmin):
+    list_display = ('name', 'original_name', 'image', 'country', 'language', 'seria', 'release_number','genre', 'publishing_house', 'release_date', 'rus_release_date', 'page', 'isbn', 'price', 'currency', 'description')
+    list_display_links = ('name', 'original_name')
+    search_fields = ('name', 'original_name', 'description')
+
+
+class CurrencyAdmin(admin.ModelAdmin):
+    list_display = ('name', 'code', 'symbol')
+    list_display_links = ('name', 'code', 'symbol')
+    search_fields = ('name', 'code', 'symbol')
+
+
 admin.site.register(models.Author, AuthorAdmin)
 admin.site.register(models.BookSeries, BookSeriesAdmin)
 admin.site.register(models.LiteraryGenre, LiteraryGenreAdmin)
 admin.site.register(models.PublishingHouse, PublishingHouseAdmin)
+admin.site.register(models.Book, BookAdmin)
+admin.site.register(models.Currency, CurrencyAdmin)
 admin.site.register(models.Country)
 admin.site.register(models.Language)

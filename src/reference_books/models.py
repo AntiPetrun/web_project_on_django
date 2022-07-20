@@ -102,6 +102,12 @@ class BookSeries(models.Model):
         blank= True,
         null= True
     )
+    description = models.TextField(
+        verbose_name= 'Description',
+        max_length= 2048,
+        blank= True,
+        null= True
+    )
     
     def __str__(self) -> str:
         return self.name
@@ -209,31 +215,31 @@ class Language(models.Model):
         ordering = ['name']
 
 
-class currency(models.Model):
+class Currency(models.Model):
     name = models.CharField(
         verbose_name= 'Name',
         max_length= 16,
         db_index=True
     )
     code = models.CharField(
-        verbose_name= 'Name',
+        verbose_name= 'Code',
         max_length= 16,
         db_index=True
     )
     symbol = models.CharField(
-        verbose_name= 'Name',
+        verbose_name= 'Symbol',
         max_length= 16,
         db_index=True
     )
     
     def __str__(self) -> str:
-        return self.name
+        return self.code
 
 
     class Meta():
-        verbose_name_plural = 'Literary Genres'
-        verbose_name = 'Literary Genre'
-        ordering = ['name']
+        verbose_name_plural = 'Currencies'
+        verbose_name = 'Currency'
+        ordering = ['code']
 
 
 class Book(models.Model):
@@ -295,12 +301,12 @@ class Book(models.Model):
         blank= True,
         null= True
     )
-    page = models.CharField(
+    page = models.IntegerField(
         verbose_name= 'Pages',
-        max_length= 16
     )
-    isbn = models.IntegerField(
-        verbose_name= 'ISBN'
+    isbn = models.CharField(
+        verbose_name= 'ISBN',
+        max_length= 16
     )
     price = models.FloatField(
         verbose_name='Price',
@@ -310,6 +316,12 @@ class Book(models.Model):
         'Currency',
         on_delete=models.PROTECT,
         verbose_name='Currency'
+    )
+    description = models.TextField(
+        verbose_name= 'Description',
+        max_length= 2048,
+        blank= True,
+        null= True
     )
     
     def __str__(self) -> str:
