@@ -16,6 +16,7 @@
             {% for genre in genres %}
             <a href='/reference_books/{{ genre.pk }}/'>{{ genre.name }}</a>
             {% endfor %}
+            <a href="{% url 'add' %}">Add New Book</a>
         </div>
         {% for book_str in book_obj %}
         <div>
@@ -32,7 +33,7 @@
             <p>{{ book_str.release_date }}</p>
             <p>{{ book_str.page }}</p>
             <p>{{ book_str.isbn }}</p>
-            <p>{{ book_str.price }}{{ book_str.currency }}</p>
+            <p>{{ book_str.price }} {{ book_str.currency }}</p>
             <p>{{ book_str.description }}</p>
         </div>
         {% endfor %}

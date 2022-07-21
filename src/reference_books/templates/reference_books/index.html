@@ -10,10 +10,11 @@
     <body>
         <h1>Books</h1>
         <div>
-            <a href='/reference_books/'>Catalog</a>
+            <a href="{% url 'index' %}">Catalog</a>
             {% for genre in genres %}
-            <a href='/reference_books/{{ genre.pk }}/'>{{ genre.name }}</a>
+            <a href="{% url 'by_genre' genre.pk %}">{{ genre.name }}</a>
             {% endfor %}
+            <a href="{% url 'add' %}">Add New Book</a>
         </div>
         {% for book_str in book_obj %}
         <div>
@@ -25,12 +26,12 @@
             <p>{{ book_str.language }}</p>
             <p>{{ book_str.seria }}</p>
             <p>{{ book_str.release_number }}</p>
-            <p><a href='/reference_books/{{ genre.pk }}/'>{{ book_str.genre.name }}</a></p>
+            <p><a href="{% url 'by_genre' book_str.genre.pk %}">{{ book_str.genre.name }}</a></p>
             <p>{{ book_str.publishing_house }}</p>
             <p>{{ book_str.release_date }}</p>
             <p>{{ book_str.page }}</p>
             <p>{{ book_str.isbn }}</p>
-            <p>{{ book_str.price }}{{ book_str.currency }}</p>
+            <p>{{ book_str.price }} {{ book_str.currency }}</p>
             <p>{{ book_str.description }}</p>
         </div>
         {% endfor %}

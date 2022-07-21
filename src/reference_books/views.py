@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from . import models
+from django.views.generic.edit import CreateView
+from .forms import ReferenceBookForm
 
 
 def index(request):
@@ -15,3 +17,20 @@ def by_genre(request, genre_id):
     current_genre = models.LiteraryGenre.objects.get(pk=genre_id)
     context = {'book_obj': book_obj, 'genres': genres, 'current_genre': current_genre}
     return render(request, 'reference_books/by_genre.html', context)
+
+
+class ReferenceBookCreateView(CreateView):
+    template_name = 'reference_books/create.html'
+    form_class = ReferenceBookForm
+    success_url = '/reference_books/'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['author'] = models.Author.objects.all()
+        context['country'] = models.Country.objects.all()
+        context['language'] = models.Language.objects.all()
+        context['seria'] = models.BookSeries.objects.all()
+        context['genre'] = models.LiteraryGenre.objects.all()
+        context['publishing_house'] = models.PublishingHouse.objects.all()
+        context['currency'] = models.Currency.objects.all()
+        return context
