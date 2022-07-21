@@ -129,8 +129,4 @@ dmypy.json
 .pyre/
 
 # Folders
-.static
-.media
-
-# Static and Media directories
 .static/
