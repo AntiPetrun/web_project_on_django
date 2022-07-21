@@ -1,39 +1,24 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Catalog</title>
-    </head>
-    <body>
-        <h1>Books</h1>
-        <div>
-            <a href="{% url 'index' %}">Catalog</a>
-            {% for genre in genres %}
-            <a href="{% url 'by_genre' genre.pk %}">{{ genre.name }}</a>
-            {% endfor %}
-            <a href="{% url 'add' %}">Add New Book</a>
-        </div>
-        {% for book_str in book_obj %}
-        <div>
-            <h2>{{ book_str.name }}</h2>
-            <p>{{ book_str.original_name }}</p>
-            <p>{{ book_str.image }}</p>
-            <p>{{ book_str.author }}</p>
-            <p>{{ book_str.country }}</p>
-            <p>{{ book_str.language }}</p>
-            <p>{{ book_str.seria }}</p>
-            <p>{{ book_str.release_number }}</p>
-            <p><a href="{% url 'by_genre' book_str.genre.pk %}">{{ book_str.genre.name }}</a></p>
-            <p>{{ book_str.publishing_house }}</p>
-            <p>{{ book_str.release_date }}</p>
-            <p>{{ book_str.page }}</p>
-            <p>{{ book_str.isbn }}</p>
-            <p>{{ book_str.price }} {{ book_str.currency }}</p>
-            <p>{{ book_str.description }}</p>
-        </div>
-        {% endfor %}
-    </body>
-</html>
+{% extends 'layout/basic.html' %}
+
+
+{% block content %}    
+{% for book_str in book_obj %}
+<div>
+    <h2>{{ book_str.name }}</h2>
+    <p>{{ book_str.original_name }}</p>
+    <p>{{ book_str.image }}</p>
+    <p>{{ book_str.author }}</p>
+    <p>{{ book_str.country }}</p>
+    <p>{{ book_str.language }}</p>
+    <p>{{ book_str.seria }}</p>
+    <p>{{ book_str.release_number }}</p>
+    <p><a href="{% url 'by_genre' book_str.genre.pk %}">{{ book_str.genre.name }}</a></p>
+    <p>{{ book_str.publishing_house }}</p>
+    <p>{{ book_str.release_date }}</p>
+    <p>{{ book_str.page }}</p>
+    <p>{{ book_str.isbn }}</p>
+    <p>{{ book_str.price }} {{ book_str.currency }}</p>
+    <p>{{ book_str.description }}</p>
+</div>
+{% endfor %}
+{% endblock %}

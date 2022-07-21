@@ -131,3 +131,6 @@ dmypy.json
 # Folders
 .static
 .media
+
+# Static and Media directories
+.static/

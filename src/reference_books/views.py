@@ -2,6 +2,7 @@ from django.shortcuts import render
 from . import models
 from django.views.generic.edit import CreateView
 from .forms import ReferenceBookForm
+from django.urls import reverse_lazy
 
 
 def index(request):
@@ -22,7 +23,7 @@ def by_genre(request, genre_id):
 class ReferenceBookCreateView(CreateView):
     template_name = 'reference_books/create.html'
     form_class = ReferenceBookForm
-    success_url = '/reference_books/'
+    success_url = reverse_lazy('index')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
