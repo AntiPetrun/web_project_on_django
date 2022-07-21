@@ -11,7 +11,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
 
 class BookSeriesAdmin(admin.ModelAdmin):
-    list_display = ('name', 'original_name', 'image', 'country', 'language', 'genre', 'publishing_house', 'release_date', 'rus_release_date', 'description')
+    list_display = ('name', 'original_name', 'image', 'country', 'language', 'genre', 'publishing_house', 'release_date', 'description')
     list_display_links = ('name', 'original_name')
     search_fields = ('name', 'original_name', 'description')
 
@@ -29,7 +29,7 @@ class PublishingHouseAdmin(admin.ModelAdmin):
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('name', 'original_name', 'image', 'country', 'language', 'seria', 'release_number','genre', 'publishing_house', 'release_date', 'rus_release_date', 'page', 'isbn', 'price', 'currency', 'description')
+    list_display = ('name', 'original_name', 'image', 'country', 'language', 'seria', 'release_number','genre', 'publishing_house', 'release_date', 'page', 'isbn', 'price', 'currency', 'description')
     list_display_links = ('name', 'original_name')
     search_fields = ('name', 'original_name', 'description')
 

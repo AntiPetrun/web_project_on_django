@@ -50,12 +50,12 @@ class Author(models.Model):
 class BookSeries(models.Model):
     name = models.CharField(
         verbose_name= 'Name',
-        max_length= 32,
+        max_length= 64,
         db_index=True
     )
     original_name = models.CharField(
         verbose_name= 'Original Name',
-        max_length= 32
+        max_length= 64
     )
     image = models.ImageField(
         verbose_name= 'Image',
@@ -94,11 +94,6 @@ class BookSeries(models.Model):
     )
     release_date = models.DateField(
         verbose_name= 'Release Date',
-        blank= True,
-        null= True
-    )
-    rus_release_date = models.DateField(
-        verbose_name= 'Release Date in Russian',
         blank= True,
         null= True
     )
@@ -245,12 +240,12 @@ class Currency(models.Model):
 class Book(models.Model):
     name = models.CharField(
         verbose_name= 'Name',
-        max_length= 32,
+        max_length= 64,
         db_index=True
     )
     original_name = models.CharField(
         verbose_name= 'Original Name',
-        max_length= 32
+        max_length= 64
     )
     image = models.ImageField(
         verbose_name= 'Image',
@@ -293,11 +288,6 @@ class Book(models.Model):
     )
     release_date = models.DateField(
         verbose_name= 'Release Date',
-        blank= True,
-        null= True
-    )
-    rus_release_date = models.DateField(
-        verbose_name= 'Release Date in Russian',
         blank= True,
         null= True
     )
