@@ -4,8 +4,7 @@
 {% block content %}    
 {% for book_str in book_obj %}
 <div>
-    <h2>{{ book_str.name }}</h2>
-    <p>{{ book_str.original_name }}</p>
+    <h2>{{ book_str.title }}</h2>
     <p>{{ book_str.image }}</p>
     <p>{{ book_str.author }}</p>
     <p>{{ book_str.country }}</p>
@@ -18,7 +17,7 @@
     <p>{{ book_str.page }}</p>
     <p>{{ book_str.isbn }}</p>
     <p>{{ book_str.price }} {{ book_str.currency }}</p>
-    <p>{{ book_str.description }}</p>
+    <p>{{ book_str.summary }}</p>
 </div>
 {% endfor %}
 {% endblock %}
