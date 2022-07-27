@@ -24,9 +24,9 @@ class Language(models.Model):
 
 
 class Currency(models.Model):
-    name = models.CharField(max_length= 32)
-    code = models.CharField(max_length= 16, db_index=True)
-    symbol = models.CharField(max_length= 16)
+    name = models.CharField(max_length= 32, help_text="Enter the currency like this: Euro, United States dollar, Japanese yen etc.")
+    code = models.CharField(max_length= 16, db_index=True, help_text="Enter a graphic symbol used as a shorthand for a currency's name")
+    symbol = models.CharField(max_length= 16, help_text='Enter ISO 4217 according to this list <a href="https://www.iso.org/iso-4217-currency-codes.html"></a>')
     
     def __str__(self):
         return self.code
@@ -69,8 +69,8 @@ class PublishingHouse(models.Model):
     name = models.CharField(max_length= 32, db_index=True)
     founding_date = models.DateField(blank= True, null= True)
     country = models.ForeignKey(Country, null=True, on_delete=models.PROTECT)
-    address = models.TextField(max_length= 256, blank= True, null= True)
-    web_site = models.URLField(blank= True, null= True)
+    address = models.TextField(max_length= 256, blank= True, null= True, help_text="Enter full address including courty, state etc.")
+    web_site = models.URLField(blank= True, null= True, help_text="Enter web-site like this: https://antipetrun86.pythonanywhere.com")
     
     def __str__(self):
         return self.name
@@ -88,7 +88,7 @@ class BookSeria(models.Model):
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this book seria")
     publishing_house = models.ForeignKey(PublishingHouse, null=True, on_delete=models.PROTECT)
     release_date = models.DateField(blank= True, null= True)
-    description = models.TextField(max_length= 2048, blank= True, null= True)
+    summary = models.TextField(max_length= 2048, blank= True, null= True, help_text="Enter a brief description of the book")
        
     def display_genre(self):
         return ', '.join([ genre.name for genre in self.genre.all()[:3] ])
