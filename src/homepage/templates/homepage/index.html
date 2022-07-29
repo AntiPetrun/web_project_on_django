@@ -11,7 +11,12 @@
     <p>{{ book_str.language }}</p>
     <p>{{ book_str.seria }}</p>
     <p>{{ book_str.release_number }}</p>
-    <p><a href="{% url 'by_genre' book_str.genre.pk %}">{{ book_str.genre.name }}</a></p>
+    <p>
+        {% for genre in book_str.genre.all %}
+        <a href="{% url 'by_genre' genre.pk %}">{{ genre.name }}</a>
+        {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
     <p>{{ book_str.publishing_house }}</p>
     <p>{{ book_str.release_date }}</p>
     <p>{{ book_str.page }}</p>

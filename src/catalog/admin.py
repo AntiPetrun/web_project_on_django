@@ -8,12 +8,12 @@ class BooksInline(admin.TabularInline):
 
 @admin.register(models.BookSeria)
 class BookSeriaAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'country', 'language', 'display_genre', 'publishing_house', 'release_date',)
+    list_display = ('title', 'author', 'country', 'language', 'display_genre', 'display_publishing_house', 'release_date',)
     search_fields = ('title', 'author', 'display_genre',)
     inlines = [BooksInline]
 
 
 @admin.register(models.Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'country', 'language', 'seria', 'release_number', 'display_genre', 'publishing_house', 'release_date', 'page', 'isbn', 'price', 'currency',)
+    list_display = ('title', 'author', 'country', 'language', 'seria', 'release_number', 'display_genre', 'display_publishing_house', 'release_date', 'page', 'isbn', 'price', 'currency',)
     search_fields = ('title', 'author', 'display_genre')

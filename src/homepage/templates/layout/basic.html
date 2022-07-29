@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{% block title %}Catalog{% endblock %}</title>
+        <title>{% block title %}Homepage{% endblock %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="{% static 'homepage/style.css' %}">
@@ -15,11 +15,12 @@
             <h1>Books</h1>
         </header>
         <nav>
-            <a href='/homepage/'>Homepage</a>
+            <a href="{% url 'index' %}">Homepage</a>
             {% for genre in genres %}
-            <a href='/reference_books/{{ genre.pk }}/'>{{ genre.name }}</a>
+            <a href="{% url 'by_genre' genre.pk %}">{{ genre.name }}</a>
             {% endfor %}
-            <a href="{% url 'add' %}">Add New Book</a>
+            <a href="{% url 'add-book' %}">Add New Book</a>
+            <a href="{% url 'add-book-seria' %}">Add New Book Series</a>
         </nav>
         <section>
             {% block content %}
