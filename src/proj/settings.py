@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 ]
 
 INSTALLED_APPS += [
+    'catalog',
     'reference_books',
     'homepage',
 ]

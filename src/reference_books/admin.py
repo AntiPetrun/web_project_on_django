@@ -1,5 +1,6 @@
 from django.contrib import admin
 from . import models
+from catalog import models
 
 
 @admin.register(models.Currency)
@@ -34,24 +35,6 @@ class GenreAdmin(admin.ModelAdmin):
 class PublishingHouseAdmin(admin.ModelAdmin):
     list_display = ('name', 'founding_date', 'country', 'address', 'web_site')
     search_fields = ('name',)
-
-
-@admin.register(models.BookSeria)
-class BookSeriaAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'country', 'language', 'display_genre', 'publishing_house', 'release_date',)
-    search_fields = ('title', 'author', 'display_genre',)
-    inlines = [BooksInline]
-    fieldsets = (
-        (None, {
-            'fields': ('display_genre',)
-        }),
-    )
-
-
-@admin.register(models.Book)
-class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'country', 'language', 'seria', 'release_number', 'display_genre', 'publishing_house', 'release_date', 'page', 'isbn', 'price', 'currency',)
-    search_fields = ('title', 'author', 'display_genre')
 
 
 admin.site.register(models.Country)

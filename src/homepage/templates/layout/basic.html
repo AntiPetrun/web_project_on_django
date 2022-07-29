@@ -8,14 +8,14 @@
         <title>{% block title %}Catalog{% endblock %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="{% static 'reference_books/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'homepage/style.css' %}">
     </head>
     <body>
         <header>
             <h1>Books</h1>
         </header>
         <nav>
-            <a href='/reference_books/'>Catalog</a>
+            <a href='/homepage/'>Homepage</a>
             {% for genre in genres %}
             <a href='/reference_books/{{ genre.pk }}/'>{{ genre.name }}</a>
             {% endfor %}

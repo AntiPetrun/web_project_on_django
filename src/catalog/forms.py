@@ -1,8 +1,8 @@
 from django.forms import ModelForm
-from . import models
+from .models import Book
 
 
-class ReferenceBookForm(ModelForm):
+class BookForm(ModelForm):
     class Meta:
-        model = models.Book
+        model = Book
         fields = ('title', 'image', 'release_number', 'release_date', 'page', 'isbn', 'price', 'summary')
