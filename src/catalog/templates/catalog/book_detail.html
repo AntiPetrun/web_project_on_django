@@ -1,0 +1,21 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}View Book Details :: Catalog{% endblock %}
+
+{% block content %}
+    <h1>Title: {{ book.title }}</h1>
+    <p><strong>Author:</strong> <a href="">{{ book.author }}</a></p>
+    <p>{{ book.image }}</p>
+    <p><strong>Summary:</strong> {{ book.summary }}</p>
+    <p><strong>Country:</strong> {{ book.country }}     
+    <strong>Language:</strong> {{ book.language }}</p>
+    <p><strong>Book Series:</strong> <a href="">{{ book.seria }}</a>    
+    <strong>Release Number:</strong> {{ book.release_number }}</p>
+    <p><strong>Genre:</strong> {% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    <p><strong>Publishing House:</strong> {% for house in book.publishing_house.all %} {{ house }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    <p><strong>Release Date:</strong> {{ book.release_date }} 
+    <strong>Page:</strong> {{ book.page }}</p>
+    <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+    <p><strong>Price:</strong> {{ book.price }}     
+    <strong>Currency:</strong> {{ book.currency }}</p>
+{% endblock %}

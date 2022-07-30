@@ -4,7 +4,7 @@ from reference_books.models import Genre
 
 
 def index(request):
-    book_obj = Book.objects.all()
+    book_list = Book.objects.all()
     genres = Genre.objects.all()
-    context = {'book_obj': book_obj, 'genres': genres}
+    context = {'book_list': book_list, 'genres': genres}
     return render(request, 'homepage/index.html', context)

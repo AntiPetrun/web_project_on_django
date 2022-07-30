@@ -2,27 +2,21 @@
 
 
 {% block content %}    
-{% for book_str in book_obj %}
+{% for book in book_list %}
 <div>
-    <h2>{{ book_str.title }}</h2>
-    <p>{{ book_str.image }}</p>
-    <p>{{ book_str.author }}</p>
-    <p>{{ book_str.country }}</p>
-    <p>{{ book_str.language }}</p>
-    <p>{{ book_str.seria }}</p>
-    <p>{{ book_str.release_number }}</p>
+    <h2>
+        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+    </h2>
+    <p>{{ book.author }}</p>
+    <p>{{ book.seria }}</p>
+    <p>{{ book.release_number }}</p>
     <p>
-        {% for genre in book_str.genre.all %}
+        {% for genre in book.genre.all %}
         <a href="{% url 'by_genre' genre.pk %}">{{ genre.name }}</a>
         {% if not forloop.last %}, {% endif %}
         {% endfor %}
     </p>
-    <p>{{ book_str.publishing_house }}</p>
-    <p>{{ book_str.release_date }}</p>
-    <p>{{ book_str.page }}</p>
-    <p>{{ book_str.isbn }}</p>
-    <p>{{ book_str.price }} {{ book_str.currency }}</p>
-    <p>{{ book_str.summary }}</p>
+    <p>{{ book.price }} {{ book.currency }}</p>
 </div>
 {% endfor %}
 {% endblock %}

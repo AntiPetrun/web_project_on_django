@@ -20,7 +20,7 @@
             <a href="{% url 'by_genre' genre.pk %}">{{ genre.name }}</a>
             {% endfor %}
             <a href="{% url 'add-book' %}">Add New Book</a>
-            <a href="{% url 'add-book-seria' %}">Add New Book Series</a>
+            <a href="{% url 'add-seria' %}">Add New Book Series</a>
         </nav>
         <section>
             {% block content %}
