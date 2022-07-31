@@ -22,8 +22,9 @@ urlpatterns = [
 ]
 
 urlpatterns += [
+    path('', RedirectView.as_view(url='/homepage/', permanent=True)),
     path('reference_books/', include('reference_books.urls')),
     path('homepage/', include('homepage.urls')),
     path('catalog/', include('catalog.urls')),
-    path('', RedirectView.as_view(url='/homepage/', permanent=True)),
+
 ]

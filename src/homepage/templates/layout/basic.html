@@ -16,7 +16,8 @@
         </header>
         <nav>
             <a href="{% url 'index' %}">Homepage</a>
-            <a href="{% url 'books' %}">All books</a>
+            <a href="{% url 'books' %}">All Books</a>
+            <a href="{% url 'authors' %}">All Authors</a>
             {% for genre in genres %}
             <a href="{% url 'by_genre' genre.pk %}">{{ genre.name }}</a>
             {% endfor %}

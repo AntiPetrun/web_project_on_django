@@ -1,9 +1,9 @@
 {% extends 'layout/basic.html' %}
 
-{% block title %}Update Book :: Catalog{% endblock %}
+{% block title %}Add New Book :: Catalog{% endblock %}
 
 {% block content %}
-<h1>Update Book</h1>
+<h1>Add New Book</h1>
 <form action='' method='post'>
     {% csrf_token %}
     {{ form.as_p }}

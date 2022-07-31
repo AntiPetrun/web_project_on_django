@@ -13,6 +13,10 @@ class BookListView(generic.ListView):
 class BookUpdateView(UpdateView):
     template_name = 'catalog/edit-book.html'
     model = models.Book
+    form_class = BookForm
+    
+    def get_success_url(self):
+        return reverse_lazy('book-detail', args = (self.object.id,))
 
 
 class BookDeleteView(DeleteView):

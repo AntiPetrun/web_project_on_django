@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import by_genre
+from .views import AuthorDetailView, AuthorListView
 
 urlpatterns = [
-    path('<int:genre_id>/', by_genre, name='by_genre'),
+    path('authors/', AuthorListView.as_view(), name='authors'),
+    path('author/<int:pk>/detail', AuthorDetailView.as_view(), name='author-detail'),
 ]

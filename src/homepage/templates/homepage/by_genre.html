@@ -1,12 +1,12 @@
 {% extends 'layout/basic.html' %}
 
+{% block title %}{{ current_genre.name }} :: Current Genre{% endblock %}
 
-{% block content %}    
+{% block content %}
+<h2>Current Genre :: {{ current_genre.name }}</h2>
 {% for book in book_list %}
 <div>
-    <h2>
-        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{ book.author }})
-    </h2>
+    <h2>{{ book.title }} ({{ book.author }})</h2>
     <p>
         {{ book.seria }}
         {{ book.release_number }}

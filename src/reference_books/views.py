@@ -1,11 +1,11 @@
-from django.shortcuts import render
-from reference_books.models import Genre
-from catalog.models import Book
+from . import models
+from django.views import generic
+
+class AuthorDetailView(generic.DetailView):
+    template_name = 'reference_books/author-detail.html'
+    model = models.Author
 
 
-def by_genre(request, genre_id):
-    book_list = Book.objects.filter(genre=genre_id)
-    genres = Genre.objects.all()
-    current_genre = Genre.objects.get(pk=genre_id)
-    context = {'book_list': book_list, 'genres': genres, 'current_genre': current_genre}
-    return render(request, 'reference_books/by_genre.html', context)
+class AuthorListView(generic.ListView):
+    template_name = 'reference_books/authors.html'
+    model = models.Author

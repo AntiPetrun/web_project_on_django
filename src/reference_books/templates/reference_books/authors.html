@@ -1,0 +1,23 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}List of Authors :: Reference Book{% endblock %}
+
+{% block content %}
+    <h1>List of Authors</h1>
+
+    {% if author_list %}
+    <ul>
+
+      {% for author in author_list %}
+      <li>
+        <a href="{{ author.get_absolute_url }}">{{ author.first_name }}, {{ author.last_name }} 
+          ({{ author.date_of_birth }} - {% if author.date_of_death %}{{ author.date_of_death }}{% endif %})
+        </a>
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no Author in the Reference Book.</p>
+    {% endif %} 
+{% endblock %}
