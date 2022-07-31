@@ -1,0 +1,11 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}Delete Book :: Catalog{% endblock %}
+
+{% block content %}
+<h1>Are you sure you want to delete {{ book }}?</h1>
+<form method='post'>
+    {% csrf_token %}
+    <input type='submit' value='Submit'>
+</form>
+{% endblock %}

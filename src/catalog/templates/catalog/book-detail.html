@@ -18,4 +18,8 @@
     <p><strong>ISBN:</strong> {{ book.isbn }}</p>
     <p><strong>Price:</strong> {{ book.price }}     
     <strong>Currency:</strong> {{ book.currency }}</p>
+    <p>
+        <a href="{% url 'add-book' %}">ADD BOOK</a> 
+        <a href="{% url 'delete-book' book.pk %}">DELETE BOOK</a>
+    </p>
 {% endblock %}
