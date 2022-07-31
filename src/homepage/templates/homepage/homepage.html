@@ -1,0 +1,23 @@
+{% extends 'layout/basic.html' %}
+
+
+{% block content %}    
+{% for book in book_list %}
+<div>
+    <h2>
+        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{ book.author }})
+    </h2>
+    <p>
+        {{ book.seria }}
+        {{ book.release_number }}
+    </p>
+    <p>
+        {% for genre in book.genre.all %}
+        <a href="{% url 'by_genre' genre.pk %}">{{ genre.name }}</a>
+        {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    <p>{{ book.price }} {{ book.currency }}</p>
+</div>
+{% endfor %}
+{% endblock %}
