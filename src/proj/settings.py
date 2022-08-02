@@ -43,11 +43,12 @@ INSTALLED_APPS += [
     'catalog',
     'reference_books',
     'homepage',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    '/var/www/static/',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,7 @@ MEDIA_ROOT = '/home/AntiPetrun86/web_project_on_django/media'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

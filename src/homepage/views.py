@@ -4,13 +4,6 @@ from reference_books.models import Genre, Author
 from django.views.generic import TemplateView
 
 
-def index(request):
-    book_list = Book.objects.all()
-    genres = Genre.objects.all()
-    context = {'book_list': book_list, 'genres': genres}
-    return render(request, 'homepage/index.html', context)
-
-
 def by_genre(request, genre_id):
     book_list = Book.objects.filter(genre=genre_id)
     genres = Genre.objects.all()
