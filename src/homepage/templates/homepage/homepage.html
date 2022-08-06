@@ -5,10 +5,12 @@
 {% for book in book_list %}
 <div>
     <h2>
-        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{ book.author }})
+        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> <a href="{{ book.author.get_absolute_url }}">({{ book.author }})</a>
     </h2>
     <p>
+        <a href="{{ book.seria.get_absolute_url }}">
         {{ book.seria }}
+        </a>
         {{ book.release_number }}
     </p>
     <p>

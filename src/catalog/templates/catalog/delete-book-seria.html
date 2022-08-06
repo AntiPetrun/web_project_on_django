@@ -1,12 +1,11 @@
 {% extends 'layout/basic.html' %}
 
-{% block title %}Update Book :: Catalog{% endblock %}
+{% block title %}Delete Book Seria :: Catalog{% endblock %}
 
 {% block content %}
-<h1>Update Book</h1>
-<form action='' method='post'>
+<h1>Are you sure you want to delete {{ bookseria }}?</h1>
+<form method='post'>
     {% csrf_token %}
-    {{ form.as_p }}
     <input type='submit' value='Submit'>
 </form>
 {% endblock %}

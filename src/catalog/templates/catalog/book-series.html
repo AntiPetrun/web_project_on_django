@@ -1,0 +1,21 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}List of Book Series :: Catalog{% endblock %}
+
+{% block content %}
+    <h1>Book Series List</h1>
+
+    {% if bookseria_list %}
+    <ul>
+
+      {% for bookseria in bookseria_list %}
+      <li>
+        <a href="{{ bookseria.get_absolute_url }}">{{ bookseria.title }}</a> <a href="{{ bookseria.author.get_absolute_url }}">({{bookseria.author}})
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no book seria in the library.</p>
+    {% endif %} 
+{% endblock %}

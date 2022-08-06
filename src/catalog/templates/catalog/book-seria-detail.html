@@ -1,0 +1,44 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}View Book Series Details :: Catalog{% endblock %}
+
+{% block content %}
+    <h1>Title: {{ bookseria.title }}</h1>
+    <p><strong>Author:</strong> 
+        <a href="{{ bookseria.author.get_absolute_url }}">{{ bookseria.author }}</a>
+    </p>
+    <p>{{ bookseria.image }}</p>
+    <p><strong>Summary:</strong> {{ bookseria.summary }}</p>
+    <p><strong>Country:</strong> {{ bookseria.country }}     
+    <strong>Language:</strong> {{ bookseria.language }}</p>
+    <p><strong>Genre:</strong> 
+        {% for genre in bookseria.genre.all %} 
+        <a href="{% url 'by_genre' genre.pk %}">{{ genre }}</a>
+        {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    <p><strong>Publishing House:</strong> 
+        {% for house in bookseria.publishing_house.all %} 
+        {{ house }}
+        {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    <p><strong>Release Date:</strong> {{ bookseria.release_date }} 
+    <p>
+        <a href="{% url 'add-book-seria' %}">
+            <button 
+            type="button" class="btn btn-dark"><i class="bi bi-file-earmark-plus">ADD BOOK SERIA</i>
+            </button>
+        </a> 
+        <a href="{% url 'edit-book-seria' bookseria.pk %}">
+            <button 
+            type="button" class="btn btn-dark"><i class="bi bi-file-earmark-plus">EDIT BOOK SERIA</i>
+            </button>
+        </a>
+        <a href="{% url 'delete-book-seria' bookseria.pk %}">
+            <button 
+            type="button" class="btn btn-dark"><i class="bi bi-file-earmark-plus">DELETE BOOK SERIA</i>
+            </button>
+        </a>
+    </p>
+{% endblock %}

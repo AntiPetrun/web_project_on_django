@@ -22,7 +22,7 @@ class BookUpdateView(UpdateView):
 class BookDeleteView(DeleteView):
     template_name = 'catalog/delete-book.html'
     model = models.Book
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('homepage')
 
 
 class BookDetailView(generic.DetailView):
@@ -51,9 +51,14 @@ class BookCreateView(CreateView):
 
 
 class BookSeriaCreateView(CreateView):
-    template_name = 'catalog/add-seria.html'
+    template_name = 'catalog/add-book-seria.html'
     form_class = BookSeriaForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('homepage')
+    
+        
+    def get_success_url(self):
+        return reverse_lazy('book-seria-detail', args = (self.object.id,))
+    
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -63,3 +68,28 @@ class BookSeriaCreateView(CreateView):
         context['genre'] = models.Genre.objects.all()
         context['publishing_house'] = models.PublishingHouse.objects.all()
         return context
+
+
+class BookSeriaDetailView(generic.DetailView):
+    template_name = 'catalog/book-seria-detail.html'
+    model = models.BookSeria
+
+
+class BookSeriaListView(generic.ListView):
+    template_name = 'catalog/book-series.html'
+    model = models.BookSeria
+
+
+class BookSeriaUpdateView(UpdateView):
+    template_name = 'catalog/edit-book-seria.html'
+    model = models.BookSeria
+    form_class = BookSeriaForm
+    
+    def get_success_url(self):
+        return reverse_lazy('book-seria-detail', args = (self.object.id,))
+
+
+class BookSeriaDeleteView(DeleteView):
+    template_name = 'catalog/delete-book-seria.html'
+    model = models.BookSeria
+    success_url = reverse_lazy('homepage')
