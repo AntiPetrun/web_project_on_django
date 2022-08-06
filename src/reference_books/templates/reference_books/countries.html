@@ -1,0 +1,21 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}List of Countries :: Reference Book{% endblock %}
+
+{% block content %}
+    <h1>List of Countries</h1>
+
+    {% if country_list %}
+    <ul>
+
+      {% for country in country_list %}
+      <li>
+        <a href="{{ country.get_absolute_url }}">{{ country }}</a>
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no Country in the Reference Book.</p>
+    {% endif %} 
+{% endblock %}

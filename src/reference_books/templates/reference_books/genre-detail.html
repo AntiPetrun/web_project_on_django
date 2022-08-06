@@ -1,0 +1,28 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}View Genre Details :: Reference book{% endblock %}
+
+{% block content %}
+    <h1>
+        Genre:: {{ genre.name }}
+    </h1>
+    <p><strong>Description:</strong> {{ genre.description }}</p>
+    <p>
+        <a href="{% url 'add-genre' %}">
+            <button 
+            type="button" class="btn btn-dark"><i class="bi bi-file-earmark-plus">ADD GENRE</i>
+            </button>
+        </a> 
+        <a href="{% url 'edit-genre' genre.pk %}">
+            <button 
+            type="button" class="btn btn-dark"><i class="bi bi-file-earmark-plus">EDIT GENRE</i>
+            </button>
+        </a>
+        <a href="{% url 'delete-genre' genre.pk %}">
+            <button 
+            type="button" class="btn btn-dark"><i class="bi bi-file-earmark-plus">DELETE GENRE</i>
+            </button>
+        </a>
+    </p>
+
+{% endblock %}

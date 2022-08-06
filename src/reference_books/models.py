@@ -5,6 +5,9 @@ from django.urls import reverse
 class Country(models.Model):
     name = models.CharField(max_length= 64, db_index=True)
     
+    def get_absolute_url(self):
+        return reverse('country-detail', args=[str(self.id)])
+    
     def __str__(self):
         return self.name
 
@@ -15,6 +18,9 @@ class Country(models.Model):
 
 class Language(models.Model):
     name = models.CharField(max_length= 32, db_index=True, help_text="Enter the book's natural language (e.g. English, French, Japanese etc.)")
+    
+    def get_absolute_url(self):
+        return reverse('language-detail', args=[str(self.id)])
     
     def __str__(self):
         return self.name
@@ -27,6 +33,9 @@ class Currency(models.Model):
     name = models.CharField(max_length= 32, help_text="Enter the currency like this: Euro, United States dollar, Japanese yen etc.")
     code = models.CharField(max_length= 16, db_index=True, help_text="Enter a graphic symbol used as a shorthand for a currency's name")
     symbol = models.CharField(max_length= 16, help_text='Enter ISO 4217 according to this list <a href="https://www.iso.org/iso-4217-currency-codes.html"></a>')
+    
+    def get_absolute_url(self):
+        return reverse('currency-detail', args=[str(self.id)])
     
     def __str__(self):
         return self.code
@@ -58,6 +67,9 @@ class Genre(models.Model):
     name = models.CharField(max_length= 32, db_index=True, help_text="Enter a book genre (e.g. Science Fiction, French Poetry etc.)")
     description = models.TextField(max_length= 2048, blank= True, null= True)
     
+    def get_absolute_url(self):
+        return reverse('genre-detail', args=[str(self.id)])
+    
     def __str__(self):
         return self.name
 
@@ -71,6 +83,9 @@ class PublishingHouse(models.Model):
     country = models.ForeignKey(Country, null=True, on_delete=models.PROTECT)
     address = models.TextField(max_length= 256, blank= True, null= True, help_text="Enter full address including courty, state etc.")
     web_site = models.URLField(blank= True, null= True, help_text="Enter web-site like this: https://antipetrun86.pythonanywhere.com")
+    
+    def get_absolute_url(self):
+        return reverse('publishinghouse-detail', args=[str(self.id)])
     
     def __str__(self):
         return self.name

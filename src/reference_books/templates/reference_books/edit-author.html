@@ -1,10 +1,10 @@
 {% extends 'layout/basic.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}Update Book :: Catalog{% endblock %}
+{% block title %}Update Author :: Reference Book{% endblock %}
 
 {% block content %}
-<h1>Update Book</h1>
+<h1>Update Author</h1>
 <form action='' method='post'>
     {% csrf_token %}
     {{ form|crispy }}

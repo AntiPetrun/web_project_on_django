@@ -1,0 +1,21 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}List of Currencies :: Reference Book{% endblock %}
+
+{% block content %}
+    <h1>List of Currencies</h1>
+
+    {% if currency_list %}
+    <ul>
+
+      {% for currency in currency_list %}
+      <li>
+        <a href="{{ currency.get_absolute_url }}">{{ currency }}</a>
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no Currency in the Reference Book.</p>
+    {% endif %} 
+{% endblock %}

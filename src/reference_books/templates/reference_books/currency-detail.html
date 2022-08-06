@@ -1,0 +1,27 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}View Currency Details :: Reference book{% endblock %}
+
+{% block content %}
+    <h1>
+        Currency:: {{ currency }}
+    </h1>
+    <p>
+        <a href="{% url 'add-currency' %}">
+            <button 
+            type="button" class="btn btn-dark"><i class="bi bi-file-earmark-plus">ADD CURRENCY</i>
+            </button>
+        </a> 
+        <a href="{% url 'edit-currency' currency.pk %}">
+            <button 
+            type="button" class="btn btn-dark"><i class="bi bi-file-earmark-plus">EDIT CURRENCY</i>
+            </button>
+        </a>
+        <a href="{% url 'delete-currency' currency.pk %}">
+            <button 
+            type="button" class="btn btn-dark"><i class="bi bi-file-earmark-plus">DELETE CURRENCY</i>
+            </button>
+        </a>
+    </p>
+
+{% endblock %}

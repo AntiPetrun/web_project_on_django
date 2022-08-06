@@ -1,0 +1,21 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}List of Publishing Houses :: Reference Book{% endblock %}
+
+{% block content %}
+    <h1>List of Publishing Houses</h1>
+
+    {% if publishinghouse_list %}
+    <ul>
+
+      {% for publishinghouse in publishinghouse_list %}
+      <li>
+        <a href="{{ publishinghouse.get_absolute_url }}">{{ publishinghouse }}</a>
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no Publishing House in the Reference Book.</p>
+    {% endif %} 
+{% endblock %}
