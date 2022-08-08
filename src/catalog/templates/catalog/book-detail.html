@@ -11,7 +11,7 @@
     <p><strong>Summary:</strong> {{ book.summary }}</p>
     <p><strong>Country:</strong> {{ book.country }}     
     <strong>Language:</strong> {{ book.language }}</p>
-    <p><strong>Book Series:</strong> <a href="">{{ book.seria }}</a>    
+    <p><strong>Book Series:</strong> <a href="{{ book.seria.get_absolute_url }}">{{ book.seria }}</a>    
     <strong>Release Number:</strong> {{ book.release_number }}</p>
     <p><strong>Genre:</strong> 
         {% for genre in book.genre.all %} 

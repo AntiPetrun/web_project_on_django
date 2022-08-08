@@ -64,14 +64,15 @@
               white-space: nowrap;
               -webkit-overflow-scrolling: touch;
             }
-          </style>
+
+        </style>
     </head>
     <body class="d-flex flex-column h-100">
         {% include 'layout/nav-bar.html' %}
         <main class="flex-shrink-0">
             <div class="container">
-                {% block content %}
-                {% endblock %}
+            {% block content %}
+            {% endblock %}
             </div>
         </main>
     </body>
