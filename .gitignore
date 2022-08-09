@@ -128,5 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Folders
-src/reference_books/static/
+# Other
+local_var.py
