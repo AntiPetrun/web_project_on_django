@@ -130,9 +130,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = '/home/AntiPetrun86/web_project_on_django/static'
+STATIC_ROOT = ''
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/home/AntiPetrun86/web_project_on_django/media'
+MEDIA_ROOT = ''
+if DEBUG:
+    MEDIA_ROOT = BASE_DIR/'media'
+else:
+    STATIC_ROOT = '/home/AntiPetrun86/web_project_on_django/static'
+    MEDIA_ROOT = '/home/AntiPetrun86/web_project_on_django/media'
 
 
 # Default primary key field type

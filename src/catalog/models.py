@@ -5,7 +5,7 @@ from reference_books.models import Author, Country, Language, Genre, PublishingH
 
 class BookSeria(models.Model):
     title = models.CharField(max_length= 64, db_index=True)
-    image = models.ImageField(blank= True, null= True)
+    pic = models.ImageField(upload_to ='uploads/% Y/% m/% d/' ,blank= True, null= True)
     author = models.ForeignKey(Author, null=True, on_delete=models.PROTECT)
     country = models.ForeignKey(Country, null=True, on_delete=models.PROTECT)
     language = models.ForeignKey(Language, null=True, on_delete=models.PROTECT)
@@ -37,7 +37,7 @@ class BookSeria(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=64, db_index=True)
-    image = models.ImageField(blank=True, null=True)
+    pic = models.ImageField(upload_to ='uploads/% Y/% m/% d/' ,blank=True, null=True)
     author = models.ForeignKey(Author, on_delete=models.PROTECT)
     country = models.ForeignKey(Country, on_delete=models.PROTECT)
     language = models.ForeignKey(Language, on_delete=models.PROTECT)

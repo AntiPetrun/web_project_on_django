@@ -1,25 +1,40 @@
 {% extends 'layout/basic.html' %}
 
-
-{% block content %}    
-{% for book in book_list %}
-<div>
-    <h2>
-        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> <a href="{{ book.author.get_absolute_url }}">({{ book.author }})</a>
-    </h2>
-    <p>
-        <a href="{{ book.seria.get_absolute_url }}">
-        {{ book.seria }}
-        </a>
-        {{ book.release_number }}
-    </p>
-    <p>
-        {% for genre in book.genre.all %}
-        <a href="{% url 'by_genre' genre.pk %}">{{ genre.name }}</a>
-        {% if not forloop.last %}, {% endif %}
+{% block content %}
+{% csrf_token %}
+<h1> NEW BOOKS </h1>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        {% for book in book_list %}
+        <div class="carousel-item  {% if forloop.counter == 1 %}active {% endif %} ">
+        <img src="{{ book.pic.url}}" class="d-block w-100" alt="...">
+        </div>
         {% endfor %}
-    </p>
-    <p>{{ book.price }} {{ book.currency }}</p>
+    </div>
 </div>
-{% endfor %}
+<h1> ALL BOOKS </h1>
+<div class="row row-cols-1 row-cols-md-5 g-4">
+    {% for book in book_list %}
+    <div class="col">
+        <div class="card">
+            {% if book.pic %}
+            <img src="{{ book.pic.url }}" class="card-img-top" alt="hello">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h5>
+                <p class="card-text"><a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></p>
+                <p class="card-text"><a href="{{ book.seria.get_absolute_url }}">{{ book.seria }}: {{ book.get_release_number_display }}</a>
+                </p>
+                <p>
+                    {% for genre in book.genre.all %}
+                    <a href="{% url 'by_genre' genre.pk %}">{{ genre.name }}</a>
+                    {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p>{{ book.price }} {{ book.currency }}</p>
+                <p><a href="{{ book.get_absolute_url }}" class="btn btn-primary">Follow</a></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 {% endblock %}

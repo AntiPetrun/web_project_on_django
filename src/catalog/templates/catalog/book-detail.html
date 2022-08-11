@@ -7,7 +7,7 @@
     <p><strong>Author:</strong> 
         <a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a>
     </p>
-    <p>{{ book.image }}</p>
+    <img src="{{ book.pic.url }}" alt="" width="200">
     <p><strong>Summary:</strong> {{ book.summary }}</p>
     <p><strong>Country:</strong> {{ book.country }}     
     <strong>Language:</strong> {{ book.language }}</p>
