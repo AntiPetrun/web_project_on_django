@@ -61,7 +61,7 @@ class Book(models.Model):
     release_date = models.DateField(blank=True, null=True)
     page = models.IntegerField()
     isbn = models.CharField(verbose_name='ISBN', max_length=16, help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
-    price = models.FloatField(max_length=8)
+    price = models.DecimalField(decimal_places=2, max_digits=5, blank=True, null=True)
     currency = models.ForeignKey(Currency ,on_delete=models.PROTECT)
     summary = models.TextField(max_length= 2048, blank=True, null=True, help_text="Enter a brief description of the book")
     

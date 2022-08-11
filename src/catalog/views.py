@@ -3,6 +3,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import BookForm, BookSeriaForm
 from django.urls import reverse_lazy
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class BookListView(generic.ListView):
@@ -10,8 +11,10 @@ class BookListView(generic.ListView):
     model = models.Book
 
 
-class BookUpdateView(UpdateView):
+class BookUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'catalog/edit-book.html'
+#    login_url = reverse_lazy('login')
+#    redirect_field_name = 'next'
     model = models.Book
     form_class = BookForm
     
@@ -19,7 +22,7 @@ class BookUpdateView(UpdateView):
         return reverse_lazy('book-detail', args = (self.object.id,))
 
 
-class BookDeleteView(DeleteView):
+class BookDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'catalog/delete-book.html'
     model = models.Book
     success_url = reverse_lazy('books')
@@ -30,7 +33,7 @@ class BookDetailView(generic.DetailView):
     model = models.Book
     
 
-class BookCreateView(CreateView):
+class BookCreateView(LoginRequiredMixin, CreateView):
     template_name = 'catalog/add-book.html'
     form_class = BookForm
     
@@ -50,7 +53,7 @@ class BookCreateView(CreateView):
         return context
 
 
-class BookSeriaCreateView(CreateView):
+class BookSeriaCreateView(LoginRequiredMixin, CreateView):
     template_name = 'catalog/add-book-seria.html'
     form_class = BookSeriaForm
     success_url = reverse_lazy('homepage')
@@ -80,7 +83,7 @@ class BookSeriaListView(generic.ListView):
     model = models.BookSeria
 
 
-class BookSeriaUpdateView(UpdateView):
+class BookSeriaUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'catalog/edit-book-seria.html'
     model = models.BookSeria
     form_class = BookSeriaForm
@@ -89,7 +92,7 @@ class BookSeriaUpdateView(UpdateView):
         return reverse_lazy('book-seria-detail', args = (self.object.id,))
 
 
-class BookSeriaDeleteView(DeleteView):
+class BookSeriaDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'catalog/delete-book-seria.html'
     model = models.BookSeria
     success_url = reverse_lazy('homepage')
