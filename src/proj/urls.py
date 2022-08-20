@@ -29,6 +29,7 @@ urlpatterns += [
     path('reference_books/', include('reference_books.urls')),
     path('catalog/', include('catalog.urls')),
     path('accounts/', include('userapp.urls')),
+    path('orders/', include('orders.urls')),
 ]
 
 if settings.DEBUG:

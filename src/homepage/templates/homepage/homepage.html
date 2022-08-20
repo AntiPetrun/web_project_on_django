@@ -32,7 +32,17 @@
                     {% endfor %}
                 </p>
                 <p>{{ book.price }} {{ book.currency }}</p>
-                <p><a href="{{ book.get_absolute_url }}" class="btn btn-primary">Follow</a></p>
+                <form action="{% url 'add-to-cart' %}" method="get">
+                    <div class="form-group row">
+                        <input type="hidden" name="book_id" value="{{ book.pk }}">
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" name="quantity" min="1" max="1000" step="1" value="1">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="submit" class="btn btn-primary" value="ADD TO CART">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

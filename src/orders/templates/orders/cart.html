@@ -1,0 +1,30 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %} Order list {% endblock %}
+
+{% block content %}
+<form action="{% url 'update-cart' %}" method="get">
+<table class="table">
+    <tr>
+        <td>Name</td>
+        <td>Quantity</td>
+        <td>Price</td>
+        <td>Delete</td>
+    </tr>
+    {% for item in cart.goods.all %}
+    <tr>
+        <td>{{ item.book.title }}</td>
+        <td><input type="number" name="good_{{item.pk}}" id="" value="{{ item.quantity }}" min="0" step="1"></td>
+        <td>{{ item.price }}</td>
+        <td><a href="{% url 'delete-from-cart' item.pk %}" class="bi bi-trash"></a></td>
+    </tr>
+    {%endfor%}
+    <tr>
+        <td colspan="2">Total price</td>
+        <td>{{ cart.total_price }}</td>
+    </tr>
+</table>
+<input type="submit" name="action_type" value="Update" class="btn btn-success">
+<input type="submit" name="action_type" value="Order" class="btn btn-warning">
+</form>
+{% endblock content %}
