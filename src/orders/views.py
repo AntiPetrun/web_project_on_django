@@ -1,8 +1,13 @@
+import datetime
 from django.views import generic
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from catalog.models import Book
 from .models import BookInCart, Order, Cart
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import permission_required
+from django.shortcuts import get_object_or_404
 
 
 def get_cart(view):
@@ -75,3 +80,31 @@ class AddToCart(generic.TemplateView):
         context = super().get_context_data(**kwargs)
         context['cart'] = cart
         return context
+
+
+class OrderDetailView(generic.DetailView):
+    template_name = 'orders/order-detail.html'
+    model = Order
+
+
+class UserOrderListView(LoginRequiredMixin, generic.ListView):
+    """
+    Generic class-based view listing of user orders.
+    """
+    model = Order
+    template_name ='orders/user_orders.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return Order.objects.filter(customer=self.request.user).all()
+
+
+class AllOrderListView(PermissionRequiredMixin, generic.ListView):
+    """Generic class-based view listing all books in order. Only visible to users with can_edit_order permission."""
+    model = Order
+    permission_required = 'orders.can_edit_order'
+    template_name = 'orders/all_orders.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return Order.objects.all()

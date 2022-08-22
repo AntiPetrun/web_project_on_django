@@ -24,7 +24,24 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'genres' %}">Genres</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'publishinghouses' %}">Publishing Houses</a>
+              </li>
+              {% if user.is_staff %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'countries' %}">Countries</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'languages' %}">Languages</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'currencies' %}">Currencies</a>
+              </li>
+              {% if perms.catalog.can_edit_order %}
+              <li><a class="nav-link" href="{% url 'all_orders' %}">All orders</a></li>
+              {% endif %}
             </ul>
+            {% endif %}
 
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -35,6 +52,7 @@
               <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 {% if user.is_authenticated %}
                 <li class="nav-item">User: {{ user.get_username }}
+                  <a href="{% url 'user_orders' %}">My orders</a>
                   <a class="btn btn-outline-primary me-2" href="{% url 'logout' %}?next={{request.path}}" role="button">Logout</a>
                   <a class="btn btn-outline-primary me-2" href="{% url 'add-to-cart' %}"><i class="bi bi-cart-check"></i></a>
                 </li>
@@ -49,5 +67,5 @@
             
           </div>
         </div>
-      </nav>
+    </nav>
 </header>

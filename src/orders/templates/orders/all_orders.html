@@ -1,0 +1,33 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %} All Orders {% endblock %}
+
+{% block content %}
+    <h1>Orders List</h1>
+    {% if perms.orders.can_edit_order %}
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Created Date</th>
+                <th scope="col">Updated Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in order_list %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.cart.customer }}</td>
+                <td>{{ order.created_date }}</td>
+                <td>{{ order.updated_date }}</td>
+                <td>{{ order.get_status_display }}</td>
+                <td><a href="{% url 'order-detail' order.pk %}"><i class="bi bi-info-square-fill"></i></a></td>
+            </tr>
+        {% endfor%}
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}

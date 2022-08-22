@@ -25,6 +25,18 @@
     </tr>
 </table>
 <input type="submit" name="action_type" value="Update" class="btn btn-success">
-<input type="submit" name="action_type" value="Order" class="btn btn-warning">
+<br>
+    <div>
+        <h2>Please fill delivery fields:</h4><br>
+        <h3> Full name </h3>
+        <input type="text" class="form-control me-2" placeholder="first name, last name" name="full_name" id=""><br>
+        <h3> Phone number </h3>
+        <input type="tel" class="form-control me-2" placeholder="+375(XX)XXX-XX-XX" name="phone" id=""><br>
+        <h3> Full address </h3>
+        <input type="text" class="form-control me-2" placeholder="enter street, building, city, region" name="delivery_address" id=""><br>
+        <h3> Commets to your order </h3>
+        <input type="text" class="form-control me-2" placeholder="your comments" name="comment" id=""><br>
+        <input type="submit" name="action_type" value="Order" class="btn btn-warning">
+    </div>
 </form>
 {% endblock content %}
