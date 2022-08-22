@@ -36,9 +36,9 @@ class BookInCart(models.Model):
 
 class Order(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.PROTECT, related_name='orders')
-    full_name = models.CharField(verbose_name="Name and surname of the recipient", max_length=64)
-    phone = models.CharField(max_length=16)
-    delivery_address = models.CharField(max_length=64)
+    full_name = models.CharField(verbose_name="Name and surname of the recipient", max_length=64, blank= True, null= True)
+    phone = models.CharField(max_length=16, blank= True, null= True)
+    delivery_address = models.CharField(max_length=64, blank= True, null= True)
     comment = models.TextField(verbose_name="Your comments to order", blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated_date = models.DateTimeField(auto_now_add=False, auto_now=True)
@@ -50,7 +50,7 @@ class Order(models.Model):
     )
 
     status = models.CharField(max_length=9, choices=STATUS, default='in work', help_text='Status of the Order')
-    customer = models.ForeignKey(User, on_delete=models.PROTECT, related_name='customer')
+    customer = models.ForeignKey(User, on_delete=models.PROTECT, related_name='customer', blank= True, null= True)
 
     class Meta:
         ordering = ['created_date']
